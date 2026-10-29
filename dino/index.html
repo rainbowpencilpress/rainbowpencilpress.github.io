@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dinosaur ABC Coloring Book – Leave a review | Rainbow Pencil Press</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #fffaf2; --card: #ffffff; --text: #1f2937; --muted: #6b7280;
+    --border: #e5e7eb; --accent: #f59e0b; --accent-text: #1f2937; --btn: #f3f4f6;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17171c; --card: #22222a; --text: #f3f4f6; --muted: #a1a1aa;
+      --border: #34343f; --accent: #fbbf24; --accent-text: #17171c; --btn: #2c2c36;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: env(safe-area-inset-top, 0px) 16px env(safe-area-inset-bottom, 0px);
+    line-height: 1.5;
+  }
+  main { max-width: 480px; margin: 0 auto; padding: 32px 0 40px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px 20px; }
+  .dino { font-size: 56px; text-align: center; margin: 0; line-height: 1; }
+  h1 { font-size: 1.6rem; text-align: center; margin: 12px 0 4px; }
+  .book { text-align: center; color: var(--muted); margin: 0 0 20px; font-weight: 600; }
+  p { margin: 0 0 16px; }
+  .primary {
+    display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 1.1rem;
+    background: var(--accent); color: var(--accent-text); border-radius: 14px; padding: 16px; margin: 0 0 8px;
+  }
+  .hint { font-size: .85rem; color: var(--muted); text-align: center; margin: 0 0 24px; }
+  h2 { font-size: 1rem; margin: 0 0 10px; }
+  .stores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stores a {
+    display: block; text-decoration: none; color: var(--text); background: var(--btn);
+    border: 1px solid var(--border); border-radius: 12px; padding: 12px 10px; text-align: center; font-weight: 600;
+  }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 20px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <p class="dino" aria-hidden="true">🦕</p>
+    <h1>Thank you for coloring with us!</h1>
+    <p class="book">Dinosaur ABC Coloring Book</p>
+    <p>We are a tiny publisher, and every review helps other parents find our books. If you have a minute, we would love to hear what you and your little artist thought. Honest reviews only, the good and the not-so-good!</p>
 
+    <a id="primary" class="primary" href="https://www.amazon.com/">Write a review on Amazon</a>
+    <p class="hint" id="primary-hint">Opens your Amazon store.</p>
+
+    <h2>Bought it in another country? Pick your store:</h2>
+    <nav class="stores" id="stores" aria-label="Amazon stores"></nav>
+  </div>
+  <footer>Rainbow Pencil Press</footer>
+</main>
+
+<script>
+  // ===== FILL THIS IN ONCE THE BOOK IS LIVE =====
+  // The book's ASIN (starts with B0..., found in KDP Bookshelf or under "Product details" on Amazon).
+  // While it is empty, the buttons open an Amazon search for the book instead of the review form.
+  var ASIN = "";
+  // ===============================================
+
+  var SEARCH = "Dinosaur ABC Coloring Book Rainbow Pencil Press";
+  var STORES = [
+    { id: "us", name: "United States", flag: "🇺🇸", domain: "amazon.com" },
+    { id: "uk", name: "United Kingdom", flag: "🇬🇧", domain: "amazon.co.uk" },
+    { id: "ca", name: "Canada", flag: "🇨🇦", domain: "amazon.ca" },
+    { id: "au", name: "Australia", flag: "🇦🇺", domain: "amazon.com.au" },
+    { id: "de", name: "Deutschland", flag: "🇩🇪", domain: "amazon.de" },
+    { id: "fr", name: "France", flag: "🇫🇷", domain: "amazon.fr" },
+    { id: "it", name: "Italia", flag: "🇮🇹", domain: "amazon.it" },
+    { id: "es", name: "España", flag: "🇪🇸", domain: "amazon.es" },
+    { id: "nl", name: "Nederland", flag: "🇳🇱", domain: "amazon.nl" },
+    { id: "ie", name: "Ireland", flag: "🇮🇪", domain: "amazon.ie" }
+  ];
+
+  function linkFor(store) {
+    var base = "https://www." + store.domain;
+    if (ASIN) return base + "/review/create-review?asin=" + encodeURIComponent(ASIN);
+    return base + "/s?k=" + encodeURIComponent(SEARCH) + "&i=stripbooks";
+  }
+
+  function guessStore() {
+    var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en-US"];
+    var map = { "en-GB": "uk", "en-CA": "ca", "fr-CA": "ca", "en-AU": "au", "en-IE": "ie",
+                "de": "de", "fr": "fr", "it": "it", "es": "es", "nl": "nl" };
+    for (var i = 0; i < langs.length; i++) {
+      var l = langs[i];
+      if (map[l]) return map[l];
+      var short = l.split("-")[0];
+      if (map[short]) return map[short];
+    }
+    return "us";
+  }
+
+  var preferred = guessStore();
+  var nav = document.getElementById("stores");
+  STORES.forEach(function (s) {
+    var a = document.createElement("a");
+    a.href = linkFor(s);
+    a.rel = "noopener";
+    a.textContent = s.flag + " " + s.name;
+    nav.appendChild(a);
+    if (s.id === preferred) {
+      var p = document.getElementById("primary");
+      p.href = linkFor(s);
+      p.textContent = "Write a review on " + s.domain.charAt(0).toUpperCase() + s.domain.slice(1);
+      document.getElementById("primary-hint").textContent =
+        ASIN ? "Opens the review form on " + s.domain + "." : "Opens the book on " + s.domain + ". Scroll down to \u201CWrite a customer review\u201D.";
+    }
+  });
+</script>
+</body>
+</html>

@@ -63,8 +63,6 @@
 
 <script>
   // ===== FILL THIS IN ONCE THE BOOK IS LIVE =====
-  // The book's ASIN (starts with B0..., found in KDP Bookshelf or under "Product details" on Amazon).
-  // While it is empty, the buttons open an Amazon search for the book instead of the review form.
   var ASIN = "B0HQRBFYRC";
   // ===============================================
 
@@ -84,7 +82,7 @@
 
   function linkFor(store) {
     var base = "https://www." + store.domain;
-    if (ASIN) return base + "/review/create-review?asin=" + encodeURIComponent(ASIN);
+    if (ASIN) return base + "/dp/" + encodeURIComponent(ASIN);
     return base + "/s?k=" + encodeURIComponent(SEARCH) + "&i=stripbooks";
   }
 
@@ -114,7 +112,7 @@
       p.href = linkFor(s);
       p.textContent = "Write a review on " + s.domain.charAt(0).toUpperCase() + s.domain.slice(1);
       document.getElementById("primary-hint").textContent =
-        ASIN ? "Opens the review form on " + s.domain + "." : "Opens the book on " + s.domain + ". Scroll down to \u201CWrite a customer review\u201D.";
+        ASIN ? "Opens the book on " + s.domain + ". Scroll down to \u201CWrite a customer review\u201D." : "Opens the search results on " + s.domain + ".";
     }
   });
 </script>

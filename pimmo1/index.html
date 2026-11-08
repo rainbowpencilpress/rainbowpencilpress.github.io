@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Pimmo and the Prickly Mad - Leave a review | Rainbow Pencil Press</title>
+<style>
+  :root { --bg:#fff7ec; --card:#ffffff; --text:#2a2140; --muted:#6b6880; --border:#eadfd2; --accent:#ec6854; --accent-text:#ffffff; --btn:#f6efe6; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#17151d; --card:#221f2a; --text:#f4f1f8; --muted:#a8a3b5; --border:#34303f; --accent:#f07a66; --accent-text:#17151d; --btn:#2c2836; } }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:var(--bg); color:var(--text); }
+  body { font-family: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; padding: env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px); }
+  main { max-width:480px; margin:0 auto; padding:32px 0 40px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:24px 20px; }
+  .emoji { font-size:56px; text-align:center; margin:0; line-height:1; }
+  h1 { font-size:1.55rem; text-align:center; margin:12px 0 4px; }
+  .book { text-align:center; color:var(--muted); margin:0 0 20px; font-weight:600; }
+  p { margin:0 0 16px; }
+  .primary { display:block; text-align:center; text-decoration:none; font-weight:800; font-size:1.1rem; background:var(--accent); color:var(--accent-text); border-radius:14px; padding:16px; margin:0 0 8px; }
+  .hint { font-size:.85rem; color:var(--muted); text-align:center; margin:0 0 24px; }
+  h2 { font-size:1rem; margin:0 0 10px; }
+  .stores { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .stores a { display:block; text-decoration:none; color:var(--text); background:var(--btn); border:1px solid var(--border); border-radius:12px; padding:12px 10px; text-align:center; font-weight:600; }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; margin-top:20px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <p class="emoji" aria-hidden="true">&#129428;</p>
+    <h1>Thank you for reading with Pimmo!</h1>
+    <p class="book">Pimmo and the Prickly Mad</p>
+    <p>We are a tiny publisher, and every honest review helps other families find our books. It only takes a minute.</p>
+    <a id="main" class="primary" href="#">Leave a review on Amazon</a>
+    <p id="hint" class="hint"></p>
+    <h2>Bought it from another Amazon store?</h2>
+    <div id="stores" class="stores"></div>
+  </div>
+  <footer>Rainbow Pencil Press</footer>
+</main>
+<script>
+  // After publishing, paste this book's ASIN between the quotes, e.g. var ASIN = "B0XXXXXXXX";
+  var ASIN = "";
+  var SEARCH = "Pimmo and the Prickly Mad Rainbow Pencil Press";
+  var STORES = [
+    { code: "us", name: "United States", domain: "amazon.com" },
+    { code: "uk", name: "United Kingdom", domain: "amazon.co.uk" },
+    { code: "de", name: "Deutschland", domain: "amazon.de" },
+    { code: "fr", name: "France", domain: "amazon.fr" },
+    { code: "it", name: "Italia", domain: "amazon.it" },
+    { code: "es", name: "Espa\u00f1a", domain: "amazon.es" },
+    { code: "nl", name: "Nederland", domain: "amazon.nl" },
+    { code: "pl", name: "Polska", domain: "amazon.pl" },
+    { code: "se", name: "Sverige", domain: "amazon.se" },
+    { code: "ca", name: "Canada", domain: "amazon.ca" },
+    { code: "au", name: "Australia", domain: "amazon.com.au" },
+    { code: "jp", name: "Japan", domain: "amazon.co.jp" }
+  ];
+  function link(s) {
+    if (ASIN) return "https://www." + s.domain + "/review/create-review?asin=" + encodeURIComponent(ASIN);
+    return "https://www." + s.domain + "/s?k=" + encodeURIComponent(SEARCH) + "&i=stripbooks";
+  }
+  function guess() {
+    var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en-US"]);
+    var l = String(langs[0] || "en-US").toLowerCase();
+    var region = l.split("-")[1] || "";
+    var byRegion = { gb: "uk", uk: "uk", ie: "uk", au: "au", nz: "au", ca: "ca", de: "de", at: "de", ch: "de", fr: "fr", be: "fr", it: "it", es: "es", nl: "nl", pl: "pl", se: "se", jp: "jp", us: "us" };
+    var byLang = { de: "de", fr: "fr", it: "it", es: "es", nl: "nl", pl: "pl", sv: "se", ja: "jp" };
+    var code = byRegion[region] || byLang[l.split("-")[0]] || "us";
+    for (var i = 0; i < STORES.length; i++) if (STORES[i].code === code) return STORES[i];
+    return STORES[0];
+  }
+  var mine = guess();
+  var main = document.getElementById("main");
+  main.href = link(mine);
+  main.textContent = "Leave a review on " + mine.domain.charAt(0).toUpperCase() + mine.domain.slice(1);
+  document.getElementById("hint").textContent = ASIN ? "Opens the review form on " + mine.domain + "." : "Opens the book on " + mine.domain + ". Scroll down to \u201cWrite a customer review\u201d.";
+  var box = document.getElementById("stores");
+  STORES.forEach(function (s) {
+    if (s.code === mine.code) return;
+    var a = document.createElement("a");
+    a.href = link(s); a.textContent = s.name; a.rel = "noopener";
+    box.appendChild(a);
+  });
+</script>
+</body>
+</html>

@@ -1,11 +1,289 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rainbow Pencil Press</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Rainbow Pencil Press – Picture books and coloring books for kids</title>
+<meta name="description" content="Travel the world with Tikko the penguin, learn about big feelings with Pimmo the hedgehog, and color from A to Z. Picture books and coloring books for ages 3 to 7, sold on Amazon.">
+<meta name="theme-color" content="#D9EFFF">
+<link rel="canonical" href="https://rainbowpencilpress.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rainbow Pencil Press">
+<meta property="og:title" content="Rainbow Pencil Press – Picture books and coloring books for kids">
+<meta property="og:description" content="Adventures around the world, stories about big feelings, and coloring books made for little hands.">
+<meta property="og:url" content="https://rainbowpencilpress.github.io/">
+<meta property="og:image" content="https://rainbowpencilpress.github.io/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="assets/fonts/Sniglet-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Andika-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1>Welcome to Rainbow Pencil Press!</h1>
-    <p>Under Construction</p>
+<a class="skip" href="#books">Skip to the books</a>
+
+<header class="topbar">
+  <div class="rainbow-stripe" aria-hidden="true"></div>
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top" aria-label="Rainbow Pencil Press, back to top">
+      <img src="assets/img/logo.webp" alt="Rainbow Pencil Press" width="440" height="382">
+    </a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#books">Books</a>
+      <a href="#characters">Characters</a>
+      <a href="#feelings-corner">Feelings corner</a>
+      <a href="#printables">Free pages</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Books for curious kids and the grown-ups who read with them</h1>
+        <p class="lede">Travel the world with Tikko the penguin, learn about big feelings with Pimmo the hedgehog, and color your way from A&nbsp;to&nbsp;Z.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#books">Browse the books</a>
+          <a class="btn btn-quiet" href="#characters">Meet the characters</a>
+        </div>
+        <p class="hero-note">For ages 3 to 7. All our books are paperbacks sold on Amazon.</p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg class="rainbow" viewBox="0 0 600 430" focusable="false">
+          <defs>
+            <filter id="crayon" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <symbol id="cloud" viewBox="0 0 170 90">
+              <path d="M24 82c-14 0-22-10-20-21 2-10 11-16 21-15 1-15 13-27 29-27 7 0 13 2 18 6 6-12 18-20 32-20 20 0 36 15 37 34 13 0 25 10 25 23 0 11-9 20-21 20H24z" fill="#fff" stroke="#4BA3E8" stroke-width="5" stroke-linejoin="round"/>
+            </symbol>
+          </defs>
+          <g class="bands" filter="url(#crayon)" fill="none" stroke-linecap="round">
+            <path pathLength="1" d="M60 360a240 240 0 0 1 480 0" stroke="#E8433A" stroke-width="27"/>
+            <path pathLength="1" d="M88 360a212 212 0 0 1 424 0" stroke="#F7901E" stroke-width="27"/>
+            <path pathLength="1" d="M116 360a184 184 0 0 1 368 0" stroke="#FFC93C" stroke-width="27"/>
+            <path pathLength="1" d="M144 360a156 156 0 0 1 312 0" stroke="#45A84B" stroke-width="27"/>
+            <path pathLength="1" d="M172 360a128 128 0 0 1 256 0" stroke="#1F84D6" stroke-width="27"/>
+            <path pathLength="1" d="M200 360a100 100 0 0 1 200 0" stroke="#8B4DBA" stroke-width="27"/>
+          </g>
+          <use href="#cloud" x="-6" y="318" width="190" height="100"/>
+          <use href="#cloud" x="414" y="318" width="190" height="100"/>
+        </svg>
+        <img class="hero-char hero-tikko" src="assets/characters/tikko-jump.webp" alt="" width="640" height="888">
+        <img class="hero-char hero-pimmo" src="assets/characters/pimmo.webp" alt="" width="281" height="405">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERIES ================= -->
+  <section class="section series" id="series" aria-labelledby="series-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="series-title">Our book series</h2>
+        <p>Three kinds of books, each made for a different moment of the day.</p>
+      </div>
+      <div class="series-list" id="series-list"></div>
+    </div>
+  </section>
+
+  <!-- ================= BOOKS ================= -->
+  <section class="section books" id="books" aria-labelledby="books-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="books-title">All books</h2>
+        <p>Tap a cover to look inside.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Show books from"></div>
+      <div id="shelves"></div>
+      <noscript><p class="noscript">This page needs JavaScript to show the books.</p></noscript>
+    </div>
+  </section>
+
+  <!-- ================= CHARACTERS ================= -->
+  <section class="section characters" id="characters" aria-labelledby="characters-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="characters-title">Meet the characters</h2>
+        <p>The same friends come back in every book of their series.</p>
+      </div>
+      <div id="character-worlds"></div>
+    </div>
+  </section>
+
+  <!-- ================= FEELINGS CORNER ================= -->
+  <section class="section feelings-corner" id="feelings-corner" aria-labelledby="feelings-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="feelings-title">Feelings corner</h2>
+        <p>Two little activities from Pimmo’s books to try together, right here on the screen.</p>
+      </div>
+
+      <div class="fc-grid">
+        <div class="fc-card checkin">
+          <h3>How do you feel today?</h3>
+          <div class="faces" role="group" aria-label="Pick a feeling">
+            <button class="face" type="button" data-feel="happy" aria-pressed="false">
+              <img src="assets/characters/face-happy.webp" alt="" width="219" height="202"><span>Happy</span>
+            </button>
+            <button class="face" type="button" data-feel="mad" aria-pressed="false">
+              <img src="assets/characters/face-mad.webp" alt="" width="264" height="256"><span>Mad</span>
+            </button>
+            <button class="face" type="button" data-feel="sad" aria-pressed="false">
+              <img src="assets/characters/face-sad.webp" alt="" width="244" height="206"><span>Sad</span>
+            </button>
+            <button class="face" type="button" data-feel="scared" aria-pressed="false">
+              <img src="assets/characters/face-scared.webp" alt="" width="243" height="222"><span>Scared</span>
+            </button>
+          </div>
+          <div class="bubble" id="feel-reply" aria-live="polite">
+            <p>Tap the Pimmo that looks like you feel.</p>
+          </div>
+          <p class="fc-tip">For grown-ups: saying the feeling out loud (“You look mad”) helps children understand what is happening inside them.</p>
+        </div>
+
+        <div class="fc-card breath" id="calm-breath">
+          <h3>Pimmo’s calm breath</h3>
+          <p class="breath-intro">Hold something smooth in your hands, like Pimmo’s calm pebble. Then breathe along with Pimmo three times.</p>
+          <div class="breath-stage">
+            <svg class="breath-icon flower" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <g fill="#F48FB1" stroke="#15305E" stroke-width="2.5">
+                <circle cx="32" cy="16" r="10"/><circle cx="46" cy="27" r="10"/><circle cx="41" cy="43" r="10"/><circle cx="23" cy="43" r="10"/><circle cx="18" cy="27" r="10"/>
+              </g>
+              <circle cx="32" cy="31" r="8" fill="#FFC93C" stroke="#15305E" stroke-width="2.5"/>
+            </svg>
+            <div class="breath-circle" id="breath-circle">
+              <img src="assets/characters/pimmo-calm.webp" alt="Pimmo sitting calmly, holding his pebble" width="201" height="271">
+            </div>
+            <svg class="breath-icon candle" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <path class="flame" d="M32 6c6 8 8 12 8 16a8 8 0 0 1-16 0c0-4 2-8 8-16z" fill="#FFB300" stroke="#15305E" stroke-width="2.5"/>
+              <rect x="22" y="30" width="20" height="28" rx="4" fill="#9FD3F5" stroke="#15305E" stroke-width="2.5"/>
+              <path d="M32 30v-4" stroke="#15305E" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <p class="breath-prompt" id="breath-prompt" aria-live="polite">Ready when you are.</p>
+          <button class="btn btn-primary" type="button" id="breath-btn">Start breathing</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRINTABLES ================= -->
+  <section class="section printables" id="printables" aria-labelledby="printables-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="printables-title">Free coloring pages</h2>
+        <p>Three pages from our coloring books to print at home. They fit on letter or A4 paper.</p>
+      </div>
+      <ul class="sheets">
+        <li class="sheet">
+          <a href="printables/stegosaurus.pdf" download>
+            <img src="assets/img/printable-stegosaurus.webp" alt="Coloring page: the letter S and a stegosaurus" width="600" height="776" loading="lazy">
+            <span class="sheet-name">S is for Stegosaurus</span>
+            <span class="sheet-from">From the Dinosaur ABC Coloring Book</span>
+            <span class="btn btn-small">Download PDF</span>
+          </a>
+        </li>
+        <li class="sheet">
+          <a href="printables/elephant.pdf" download>
+            <img src="assets/img/printable-elephant.webp" alt="Coloring page: the letter E and a baby elephant" width="600" height="776" loading="lazy">
+            <span class="sheet-name">E is for Elephant</span>
+            <span class="sheet-from">From the Animal ABC Coloring Book</span>
+            <span class="btn btn-small">Download PDF</span>
+          </a>
+        </li>
+        <li class="sheet">
+          <a href="printables/coloring-champion.pdf" download>
+            <img src="assets/img/printable-coloring-champion.webp" alt="Coloring Champion certificate with a lion holding a trophy" width="600" height="776" loading="lazy">
+            <span class="sheet-name">Coloring Champion certificate</span>
+            <span class="sheet-from">Write your little artist’s name on it</span>
+            <span class="btn btn-small">Download PDF</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section class="section reviews" aria-labelledby="reviews-title">
+    <div class="wrap reviews-inner">
+      <div>
+        <h2 id="reviews-title">Already have one of our books?</h2>
+        <p>We are a tiny publisher, and every honest review helps other parents find our books. Pick your book to leave a review on Amazon.</p>
+      </div>
+      <ul class="review-links" id="review-links"></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="logo-sticker"><img src="assets/img/logo.webp" alt="Rainbow Pencil Press" width="440" height="382" loading="lazy"></span>
+      <p>Picture books and coloring books for kids, made with care and lots of crayons.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Series">
+      <h2>Series</h2>
+      <ul id="footer-series"></ul>
+    </nav>
+    <div class="footer-store">
+      <h2>Your Amazon store</h2>
+      <label for="store-select">Buy buttons open this store:</label>
+      <select id="store-select"></select>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <p>© <span id="year">2026</span> Rainbow Pencil Press. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ================= BOOK DETAILS ================= -->
+<dialog class="book-dialog" id="book-dialog" aria-labelledby="dlg-title">
+  <div class="dlg-inner">
+    <button class="dlg-close" type="button" id="dlg-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    </button>
+    <div class="dlg-gallery">
+      <div class="dlg-stage">
+        <img id="dlg-image" src="" alt="">
+        <button class="dlg-nav prev" type="button" id="dlg-prev" aria-label="Previous page">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="dlg-nav next" type="button" id="dlg-next" aria-label="Next page">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="dlg-thumbs" id="dlg-thumbs"></div>
+    </div>
+    <div class="dlg-info">
+      <p class="dlg-series" id="dlg-series"></p>
+      <h2 id="dlg-title"></h2>
+      <p class="dlg-subtitle" id="dlg-subtitle"></p>
+      <ul class="facts" id="dlg-facts"></ul>
+      <p class="dlg-desc" id="dlg-desc"></p>
+      <ul class="highlights" id="dlg-highlights"></ul>
+      <div class="dlg-buy" id="dlg-buy"></div>
+      <div class="dlg-extra">
+        <a id="dlg-review" href="#">Already read it? Leave a review</a>
+        <button type="button" class="linklike" id="dlg-copy">Copy link to this book</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="data/books.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

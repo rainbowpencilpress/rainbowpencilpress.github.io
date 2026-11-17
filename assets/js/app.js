@@ -46,8 +46,9 @@
   }
   var store = storeById(detectStore());
 
-  function amazonUrl(book) {
-    return book.asin ? "https://www." + store.domain + "/dp/" + encodeURIComponent(book.asin) : "";
+  function amazonUrl(book, kind) { // kind "ebook" -> Kindle edition, otherwise the paperback
+    var asin = kind === "ebook" ? book.ebook : book.asin;
+    return asin ? "https://www." + store.domain + "/dp/" + encodeURIComponent(asin) : "";
   }
   function storeName() { return store.domain.charAt(0).toUpperCase() + store.domain.slice(1); }
 
@@ -188,6 +189,7 @@
         el("div", { "class": "book-actions" }, [
           url ? el("a", { "class": "btn btn-primary btn-small buy-link", href: url, target: "_blank", rel: "noopener", "data-id": book.id, text: "Buy on Amazon" })
               : el("span", { "class": "soon-note", text: "Coming soon to Amazon" }),
+          (url && book.ebook) ? el("a", { "class": "linklike buy-link", href: amazonUrl(book, "ebook"), target: "_blank", rel: "noopener", "data-id": book.id, "data-kind": "ebook", text: "Kindle eBook" }) : null,
           (book.previews && book.previews.length) ? el("button", { type: "button", "class": "linklike", onclick: open, text: "Look inside" }) : null
         ])
       ])
@@ -266,7 +268,7 @@
     try { localStorage.setItem(STORE_KEY, store.id); } catch (e) {}
     document.querySelectorAll(".buy-link").forEach(function (a) {
       var b = BOOKS.filter(function (x) { return x.id === a.getAttribute("data-id"); })[0];
-      if (b) a.href = amazonUrl(b);
+      if (b) a.href = amazonUrl(b, a.getAttribute("data-kind"));
     });
     document.querySelectorAll("select.store").forEach(function (s) { s.value = store.id; });
     if (current) renderBuy(current);
@@ -281,7 +283,8 @@
     box.innerHTML = "";
     var url = amazonUrl(book);
     if (url) {
-      box.appendChild(el("a", { "class": "btn btn-primary buy-link", href: url, target: "_blank", rel: "noopener", "data-id": book.id, text: "Buy on " + storeName() }));
+      box.appendChild(el("a", { "class": "btn btn-primary buy-link", href: url, target: "_blank", rel: "noopener", "data-id": book.id, text: (book.ebook ? "Paperback on " : "Buy on ") + storeName() }));
+      if (book.ebook) box.appendChild(el("a", { "class": "btn buy-link", href: amazonUrl(book, "ebook"), target: "_blank", rel: "noopener", "data-id": book.id, "data-kind": "ebook", text: "Kindle eBook" }));
       var sel = el("select", { "class": "store", id: "dlg-store", "aria-label": "Amazon store" });
       box.appendChild(el("label", { "class": "store-pick", "for": "dlg-store" }, ["Other country?", sel]));
       fillStoreSelect(sel);
@@ -315,7 +318,7 @@
 
     var facts = $("#dlg-facts");
     facts.innerHTML = "";
-    [book.ages ? "Ages " + book.ages : "", book.pages ? book.pages + " pages" : "", book.size || ""]
+    [book.ages ? "Ages " + book.ages : "", book.pages ? book.pages + " pages" : "", book.size || "", book.ebook ? "Also on Kindle" : ""]
       .filter(Boolean).forEach(function (f) { facts.appendChild(el("li", { text: f })); });
 
     $("#dlg-desc").textContent = book.description || "";
@@ -453,12 +456,13 @@
     var books = BOOKS.filter(function (b) { return b.cover; }).map(function (b) {
       var o = {
         "@type": "Book", name: b.title + (b.subtitle ? ": " + b.subtitle : ""), url: base + "#book-" + b.id,
-        image: base + b.cover, author: { "@id": base + "#org" }, publisher: { "@id": base + "#org" },
+        image: /^https?:/.test(b.cover) ? b.cover : base + b.cover, author: { "@id": base + "#org" }, publisher: { "@id": base + "#org" },
         bookFormat: "https://schema.org/Paperback", inLanguage: "en", description: b.description || ""
       };
       if (b.ages) o.typicalAgeRange = b.ages.replace("–", "-");
       if (b.pages) o.numberOfPages = b.pages;
       if (b.asin) o.sameAs = "https://www.amazon.com/dp/" + b.asin;
+      if (b.asin && b.ebook) o.sameAs = [o.sameAs, "https://www.amazon.com/dp/" + b.ebook];
       return o;
     });
     var s = document.createElement("script");

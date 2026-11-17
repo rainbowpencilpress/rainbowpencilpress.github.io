@@ -11,9 +11,11 @@
      id          short name, also the QR review folder (e.g. "tikko-italy")
      category    one of the category ids below: "tikko", "feelings", "coloring"
      number      number inside its series (books are sorted by it)
-     asin        Amazon ASIN. Leave "" while the book is not live yet:
+     asin        Amazon ASIN of the PAPERBACK. Leave "" while the book is not live yet:
                  the site then shows "Coming soon" instead of "Buy on Amazon".
-     cover       image in assets/covers/  (leave "" for a drawn placeholder)
+     ebook       Amazon ASIN of the Kindle eBook (optional). Adds a "Kindle eBook" button.
+     cover       image in assets/covers/  (leave "" for a drawn placeholder).
+                 A full https:// image URL also works.
      previews    images for the "Look inside" gallery (can be [])
      added       date the book went live (a "New" badge shows for a few weeks)
      review      folder of the QR review page (e.g. "tikko-italy/")
@@ -96,7 +98,8 @@ window.RPP = {
       subtitle: "An Adventure in Greece",
       category: "tikko",
       number: 1,
-      asin: "",
+      asin: "B0HR5ZQFG5",
+      ebook: "B0HRVZSH8W",
       cover: "assets/covers/tikko-greece.webp",
       previews: [
         "assets/previews/tikko-greece-1.webp",
@@ -118,12 +121,35 @@ window.RPP = {
       review: "tikko-greece/"
     },
     {
+      id: "tikko-italy",
+      title: "Tikko and the Leaning Tower",
+      subtitle: "An Adventure in Italy",
+      category: "tikko",
+      number: 2,
+      asin: "B0HRVSM622",
+      cover: "https://m.media-amazon.com/images/I/61vDU-ednnL._SL1000_.jpg",
+      previews: [],
+      ages: "3–7",
+      pages: 30,
+      size: "8.5 × 8.5 in paperback",
+      added: "2026-11-16",
+      description: "Tikko the little explorer penguin is in Italy, and everything looks wrong! A tower that leans? Streets made of water? A giant building full of holes? Luckily, his new friend Gino the pigeon is there to show him that some things are perfect just the way they are. A funny, warm story about curiosity, friendship and seeing the beauty in things just as they are.",
+      highlights: [
+        "From the Leaning Tower of Pisa to the canals of Venice and the Colosseum in Rome",
+        "Make pizza Margherita in Naples (and catch the dough!)",
+        "Two Italian words to learn: Ciao and Grazie",
+        "5 fun facts about Italy and Tikko’s passport page"
+      ],
+      review: "tikko-italy/"
+    },
+    {
       id: "pimmo1",
       title: "Pimmo and the Prickly Mad",
       subtitle: "A Story About Anger",
       category: "feelings",
       number: 1,
-      asin: "",
+      asin: "B0HR6C38HX",
+      ebook: "B0HRVLGP3Z",
       cover: "assets/covers/pimmo1.webp",
       previews: [
         "assets/previews/pimmo1-1.webp",
@@ -147,19 +173,24 @@ window.RPP = {
     {
       id: "pimmo2",
       title: "Pimmo and the Torn Kite",
-      subtitle: "",
+      subtitle: "A Story About Accidents and Forgiving",
       category: "feelings",
       number: 2,
-      asin: "",
-      cover: "",
+      asin: "B0HRVMYQS8",
+      cover: "https://m.media-amazon.com/images/I/61IXEHGn-FL._SL1000_.jpg",
       previews: [],
       ages: "3–6",
-      pages: null,
-      size: "",
-      added: "",
-      description: "The next story in Pimmo’s Big Feelings. Coming soon.",
-      highlights: [],
-      review: ""
+      pages: 28,
+      size: "8.5 × 8.5 in paperback",
+      added: "2026-11-16",
+      description: "It’s a windy day in Maple Hollow, and Pimmo’s brand-new kite is flying high… until Kiki swoops too close and RRRIP! Pimmo feels mad. But when he sees how sorry Kiki is, he takes out his calm pebble, breathes slowly and finds two very kind words: “It’s okay.” Then, with a little help from Grandma Owl, the two friends fix the kite together. A gentle story about accidents, forgiving and fixing things together.",
+      highlights: [
+        "The difference between an accident and doing something on purpose",
+        "Pimmo’s calm breath: smell the flower, blow the candle",
+        "Let’s talk about it questions and a kind-words practice",
+        "A “How do you feel today?” page"
+      ],
+      review: "pimmo2/"
     },
     {
       id: "dino",

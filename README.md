@@ -13,7 +13,7 @@
 | `assets/previews/` | Σελίδες για το «Look inside». |
 | `assets/characters/` | Χαρακτήρες με διάφανο φόντο. |
 | `printables/` | Δωρεάν σελίδες ζωγραφικής (PDF). |
-| `dino/`, `pimmo1/`, `tikko-greece/`, `animal-abc/` | Οι σελίδες review των QR codes. **Μην τις μετονομάσεις**: τα τυπωμένα βιβλία δείχνουν εκεί. |
+| `dino/`, `animal-abc/`, `pimmo1/`, `pimmo2/`, `tikko-greece/`, `tikko-italy/` | Οι σελίδες review των QR codes. **Μην τις μετονομάσεις**: τα τυπωμένα βιβλία δείχνουν εκεί. |
 | `tools/add_book.py` | Script που προσθέτει νέο βιβλίο. |
 | `404.html` | Σελίδα για λάθος links. |
 
@@ -67,7 +67,7 @@ python tools/add_book.py \
 
 ### Με το χέρι
 
-1. Βάλε το εξώφυλλο στο `assets/covers/` (JPG, PNG ή WebP, ~900px πλάτος).
+1. Βάλε το εξώφυλλο στο `assets/covers/` (JPG, PNG ή WebP, ~900px πλάτος). Δουλεύει και κατευθείαν link εικόνας (π.χ. το εξώφυλλο από το Amazon, `https://m.media-amazon.com/images/I/....jpg`).
 2. Στο `data/books.js` αντέγραψε ένα υπάρχον βιβλίο, επικόλλησέ το πάνω από τη γραμμή
    `/* NEW BOOKS: ... */` και άλλαξε τα πεδία. Πρόσεξε τα κόμματα ανάμεσα στα `{ }`.
 3. Για σελίδα review: αντέγραψε το `tools/review-page-template.html` σε νέο φάκελο ως `index.html` και άλλαξε τα `{{TITLE}}`, `{{EMOJI}}`, `{{SEARCH}}`.
@@ -75,7 +75,8 @@ python tools/add_book.py \
 ## Όταν ένα βιβλίο βγει live στο Amazon
 
 Βάλε το ASIN (το βρίσκεις στο KDP Bookshelf) σε **δύο** σημεία:
-1. `data/books.js` → `asin: "B0XXXXXXXX"`. Το «Coming soon» γίνεται κουμπί «Buy on Amazon» και μπαίνει badge «New».
+1. `data/books.js` → `asin: "B0XXXXXXXX"` (το ASIN του **paperback**). Το «Coming soon» γίνεται κουμπί «Buy on Amazon» και μπαίνει badge «New».
+   Αν το βιβλίο έχει και Kindle eBook, πρόσθεσε `ebook: "B0YYYYYYYY"`: εμφανίζεται κουμπί «Kindle eBook» δίπλα στο paperback.
 2. Στη σελίδα review του βιβλίου (π.χ. `pimmo1/index.html`) → `var ASIN = "B0XXXXXXXX";`, ώστε το QR να ανοίγει κατευθείαν τη φόρμα review.
 
 Βάλε και το `added` στην ημερομηνία που βγήκε live: το badge «New» φαίνεται για 45 μέρες (`newForDays`).

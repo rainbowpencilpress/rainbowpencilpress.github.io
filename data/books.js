@@ -81,11 +81,11 @@ window.RPP = {
       scene: "assets/scenes/coloring.webp",
       sceneAlt: "A coloring page with a big letter C and a cute cat",
       mascot: "",
-      blurb: "Big, bold, simple pictures for little hands. Children learn their letters and lots of new words while they color.",
+      blurb: "Big, bold, simple pictures for little hands. Children learn their letters and lots of new words with friendly dinosaurs and animals, or color a whole Christmas full of Santa, elves and reindeer.",
       inside: [
         "Thick outlines that are easy to color",
         "Single-sided pages, so markers don’t bleed through",
-        "The name of every animal written on its page"
+        "Bonus pages: Test Your Colors and a Coloring Champion certificate"
       ]
     }
   ],
@@ -247,6 +247,34 @@ window.RPP = {
         "Single-sided pages to prevent bleed-through"
       ],
       review: "animal-abc/"
+    },
+
+    {
+      id: "christmas-coloring",
+      title: "Christmas Coloring Book for Kids",
+      subtitle: "50 Festive Designs with Santa, Elves, Reindeer and Gingerbread Friends",
+      category: "coloring",
+      number: 3,
+      asin: "",
+      cover: "assets/covers/christmas-coloring.webp",
+      previews: [
+        "assets/previews/christmas-coloring-1.webp",
+        "assets/previews/christmas-coloring-2.webp",
+        "assets/previews/christmas-coloring-3.webp",
+        "assets/previews/christmas-coloring-4.webp"
+      ],
+      ages: "4–6",
+      pages: 120,
+      size: "8.5 × 11 in paperback",
+      added: "2026-11-23",
+      description: "50 festive pages to color this Christmas! Santa Claus with his big sack of toys, busy elves in their workshop, friendly reindeer, gingerbread friends and sweet treats, and cozy holiday scenes, in 5 themed sections.",
+      highlights: [
+        "50 Christmas designs in 5 themes: Santa, elves, reindeer, gingerbread and sweets, Merry Christmas",
+        "Big, bold, simple designs for little hands",
+        "Single-sided pages to prevent bleed-through",
+        "A Test Your Colors page and a Coloring Champion certificate"
+      ],
+      review: "christmas-coloring/"
     },
 
     /* NEW BOOKS: tools/add_book.py inserts new entries here */

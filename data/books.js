@@ -226,7 +226,7 @@ window.RPP = {
       subtitle: "Learn the Alphabet A to Z with Cute Animals",
       category: "coloring",
       number: 2,
-      asin: "",
+      asin: "B0HSRS7V6V",
       cover: "assets/covers/animal-abc.webp",
       previews: [
         "assets/previews/animal-abc-1.webp",
@@ -237,7 +237,7 @@ window.RPP = {
       ages: "4–6",
       pages: 92,
       size: "8.5 × 11 in paperback",
-      added: "2026-11-09",
+      added: "2026-11-23",
       description: "Learn the ABCs with friendly animals! From Alligator to Zebra, every letter has its own page with a big bubble letter and a cute animal to color, plus 14 bonus animal friends like a panda, an octopus and a koala.",
       highlights: [
         "26 letter pages from A to Z",

@@ -255,7 +255,7 @@ window.RPP = {
       subtitle: "50 Festive Designs with Santa, Elves, Reindeer and Gingerbread Friends",
       category: "coloring",
       number: 3,
-      asin: "",
+      asin: "B0HSNYFRVK",
       cover: "assets/covers/christmas-coloring.webp",
       previews: [
         "assets/previews/christmas-coloring-1.webp",
@@ -266,7 +266,7 @@ window.RPP = {
       ages: "4–6",
       pages: 120,
       size: "8.5 × 11 in paperback",
-      added: "2026-11-23",
+      added: "2026-11-24",
       description: "50 festive pages to color this Christmas! Santa Claus with his big sack of toys, busy elves in their workshop, friendly reindeer, gingerbread friends and sweet treats, and cozy holiday scenes, in 5 themed sections.",
       highlights: [
         "50 Christmas designs in 5 themes: Santa, elves, reindeer, gingerbread and sweets, Merry Christmas",
